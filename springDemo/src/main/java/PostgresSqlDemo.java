@@ -9,6 +9,7 @@ public class PostgresSqlDemo {
                 conn.close();
             }catch (SQLException e){
                 e.printStackTrace();
+                System.out.println("aa");
             }
         }
     }
