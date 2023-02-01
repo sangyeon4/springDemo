@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="INFO">
+    <Appenders>
+        <Console name="LogToConsole" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{HH:mm:ss} %t [%p] - %m%ex Line : %L%n"/>
+        </Console>
+        <!-- log 파일을 저장하는 위치와 정책 -->
+        <RollingFile name="SaveFile">
+            <FileName>C:/log/Log.log</FileName>
+            <FilePattern>C:/log/%d{yyyy-MM-dd-HH}.log</FilePattern>
+            <PatternLayout pattern="%d{yyyy-MMM-dd HH:mm:ss} %t [%p] %logger{36} - %m%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true" />
+            </Policies>
+            <DefaultRolloverStrategy max="7" fileIndex="max" >
+                <Delete basePath = "C:/log/log.log" maxDepth = "1">
+                    <IfLastModified age = "30s"/>
+                </Delete>
+            </DefaultRolloverStrategy>
+        </RollingFile>
+    </Appenders>
+    <Loggers>
+        <!-- 기본(디폴트) loger 설정-->
+        <Root level="INFO">
+            <AppenderRef ref="LogToConsole"/>
+            <AppenderRef ref="SaveFile"/>
+        </Root>
+    </Loggers>
+</Configuration>
